@@ -23,13 +23,25 @@ ScopeService.prototype.getAllScope = function containsScopeId(callback) {
 
 ScopeService.prototype.updateScope = function updateScope(scope, callback) {
 
-  var scriptDn = this.ldapClient.getDn('ou=scripts', 'inum=' + scope.scriptInum);
+  if (scope.scopeInums.length <= 0) {
+    return callback({msg: "Success"});
+  }
+
+  var scriptDn = '';
+
+  if (!!scope.scriptInum) {
+    scriptDn = this.ldapClient.getDn('ou=scripts', 'inum=' + scope.scriptInum);
+  } else {
+    scriptDn = ''
+  }
+
 
   var attrs = {
     oxPolicyScriptDn: scriptDn,
   };
 
   var cnt = 0;
+
   scope.scopeInums.forEach(inum => {
     var scopeDn = this.ldapClient.getDn('ou=scopes,ou=uma', 'inum=' + inum);
     this.ldapClient.modify(scopeDn, 'replace', attrs, function (result) {

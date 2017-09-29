@@ -68,7 +68,7 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 // For self-signed certificate.
-// process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 // Register routes. Loaded main route. Index route loads other routes.
 app.use(require('./controllers/index'));
