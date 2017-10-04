@@ -16,4 +16,10 @@ router.post('/scopes', (req, res) => {
   });
 });
 
+router.get('/scopes/add', (req, res) => {
+  ldap.scopeService.addScope(["http://test.com/about", "http://test2.com/about"], function (result) {
+    return res.send({msg: result});
+  });
+});
+
 module.exports = router;
