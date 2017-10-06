@@ -25,7 +25,7 @@ var LOG = new Logger({
     type: 'rotating-file',
     period: '1d', // daily rotation
     count: 5, // keep 5 back copies
-    path: './oxpushserver-error.log' // Log specified level and above to file
+    path: './kong-api-error.log' // Log specified level and above to file
   }],
 
   serializers: Logger.stdSerializers

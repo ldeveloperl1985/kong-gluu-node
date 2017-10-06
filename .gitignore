@@ -28,3 +28,4 @@ key.pem
 privkey1.pem
 
 public/images
+*.log
